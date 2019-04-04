@@ -1,6 +1,6 @@
 # react-pdf-js
 
-`react-pdf-viewer` provides a component for rendering PDF documents using `mozilla/pdf.js` and ability to adding watermark to PDF. Written for React 15/16 and ES2015.
+`react-pdf-watermark` provides a component for rendering PDF documents using `mozilla/pdf.js` and ability to adding watermark to PDF. Written for React 15/16 and ES2015.
 
 This package is originally built by `mikecousins/react-pdf-js` with a number of enhancement:
 * Added hook `onPageRenderComplete()` for determine whether the page is loaded onCanvas.
@@ -10,7 +10,7 @@ This package is originally built by `mikecousins/react-pdf-js` with a number of 
 
 ## Usage
 
-Install with `npm install react-pdf-viewer`
+Install with `npm install react-pdf-watermark`
 
 ## Example
 
@@ -18,7 +18,7 @@ Use it in your app (showing some basic pagination as well):
 
 ```js
 import React from 'react';
-import PDF from 'react-pdf-viewer';
+import PDF from 'react-pdf-watermark';
 
 class MyPdfViewer extends React.Component {
   state = {};
