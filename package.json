@@ -1,10 +1,10 @@
 {
   "name": "react-pdf-watermark",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "React component for Viewing PDF with watermark as PDF.js Wrapper.",
   "author": "jimmyjs",
   "license": "MIT",
-  "repository": "jimmyjs/react-pdf-watermark",
+  "repository": "jimmy-js/react-pdf-watermark",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",
@@ -33,10 +33,10 @@
     "react-dom": "^16.6.0",
     "rollup": "^0.66.6",
     "rollup-plugin-babel": "^3.0.7",
-    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-commonjs": "^9.3.4",
     "rollup-plugin-node-resolve": "^3.4.0",
     "rollup-plugin-peer-deps-external": "^2.2.0",
-    "rollup-plugin-url": "^2.0.1"
+    "rollup-plugin-url": "^2.2.1"
   },
   "files": [
     "dist"

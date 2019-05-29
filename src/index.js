@@ -92,13 +92,14 @@ export default class Pdf extends Component {
     const viewport = page.getViewport(scale)
     const { canvas } = this
     const canvasContext = canvas.getContext('2d')
+
+    canvas.width = viewport.width
+    canvas.height = viewport.height
     if (canvasWidth || canvasHeight) {
       canvas.style.width = canvasWidth
       canvas.style.height = canvasHeight
-    } else {
-      canvas.width = viewport.width
-      canvas.height = viewport.height
     }
+
     const renderContext = { canvasContext, viewport }
 
     if (this.renderTask) {
