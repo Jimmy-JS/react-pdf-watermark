@@ -18,6 +18,8 @@ export default class Pdf extends Component {
     onPageRenderComplete: PropTypes.func,
     onChangePage: PropTypes.func,
     forceRerender: PropTypes.bool,
+    canvasWidth: PropTypes.string,
+    canvasHeight: PropTypes.string,
     scale: PropTypes.number,
     cMapUrl: PropTypes.string,
     cMapPacked: PropTypes.bool,
@@ -33,6 +35,8 @@ export default class Pdf extends Component {
     onPageRenderComplete: null,
     onChangePage: null,
     forceRerender: false,
+    canvasWidth: '',
+    canvasHeight: '',
     scale: 1,
     cMapUrl: '../node_modules/pdfjs-dist/cmaps/',
     cMapPacked: false,
@@ -84,12 +88,17 @@ export default class Pdf extends Component {
   }
 
   drawPDF = (page) => {
-    const { scale } = this.props
+    const { scale, canvasWidth, canvasHeight } = this.props
     const viewport = page.getViewport(scale)
     const { canvas } = this
     const canvasContext = canvas.getContext('2d')
-    canvas.height = viewport.height
-    canvas.width = viewport.width
+    if (canvasWidth || canvasHeight) {
+      canvas.style.width = canvasWidth
+      canvas.style.height = canvasHeight
+    } else {
+      canvas.width = viewport.width
+      canvas.height = viewport.height
+    }
     const renderContext = { canvasContext, viewport }
 
     if (this.renderTask) {
