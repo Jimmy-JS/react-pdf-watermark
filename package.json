@@ -1,6 +1,6 @@
 {
   "name": "react-pdf-watermark",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "React component for Viewing PDF with watermark as PDF.js Wrapper.",
   "author": "jimmyjs",
   "license": "MIT",

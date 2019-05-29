@@ -18,8 +18,6 @@ export default class Pdf extends Component {
     onPageRenderComplete: PropTypes.func,
     onChangePage: PropTypes.func,
     forceRerender: PropTypes.bool,
-    canvasWidth: PropTypes.string,
-    canvasHeight: PropTypes.string,
     scale: PropTypes.number,
     cMapUrl: PropTypes.string,
     cMapPacked: PropTypes.bool,
@@ -35,8 +33,6 @@ export default class Pdf extends Component {
     onPageRenderComplete: null,
     onChangePage: null,
     forceRerender: false,
-    canvasWidth: '',
-    canvasHeight: '',
     scale: 1,
     cMapUrl: '../node_modules/pdfjs-dist/cmaps/',
     cMapPacked: false,
@@ -88,17 +84,15 @@ export default class Pdf extends Component {
   }
 
   drawPDF = (page) => {
-    const { scale, canvasWidth, canvasHeight } = this.props
+    const { scale } = this.props
     const viewport = page.getViewport(scale)
     const { canvas } = this
     const canvasContext = canvas.getContext('2d')
 
     canvas.width = viewport.width
     canvas.height = viewport.height
-    if (canvasWidth || canvasHeight) {
-      canvas.style.width = canvasWidth
-      canvas.style.height = canvasHeight
-    }
+    canvas.style.width = Math.floor(viewport.width / scale) + 'pt'
+    canvas.style.height = Math.floor(viewport.height / scale) + 'pt'
 
     const renderContext = { canvasContext, viewport }
 
@@ -133,11 +127,11 @@ export default class Pdf extends Component {
   renderBasicWatermark = () => {
     const { canvas } = this
     const context = canvas.getContext('2d')
-    const { watermark, watermarkOptions } = this.props
+    const { watermark, watermarkOptions, scale } = this.props
 
     let options = {
       transparency: 0.5,
-      fontSize: 55,
+      fontSize: 55 * scale,
       fontStyle: 'Bold',
       fontFamily: 'Arial'
     }
@@ -148,7 +142,7 @@ export default class Pdf extends Component {
     context.translate(canvas.width / 2, canvas.height / 2)
 
     const metrics = context.measureText(watermark)
-    context.fillText(watermark, -metrics.width / 2, (55 / 2))
+    context.fillText(watermark, -metrics.width / 2, (options.fontSize / 2))
   }
 
   render() {
